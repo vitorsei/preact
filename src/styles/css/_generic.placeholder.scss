@@ -1,0 +1,19 @@
+@import 'settings.colors';
+
+
+$placeholderClr:    $clr-alto;
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: $placeholderClr;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: $placeholderClr;
+  opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: $placeholderClr;
+  opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: $placeholderClr;
+}
