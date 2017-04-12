@@ -31,6 +31,17 @@
     "superagent-promise": "1.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "6.16.0",
+    "babel-jest": "16.0.0",
+    "babel-loader": "6.2.7",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "6.16.0",
+    "babel-register": "6.16.0",
     "css-loader": "0.26.2",
     "eslint": "3.16.1",
     "eslint-config-pureprofile": "2.2.0",

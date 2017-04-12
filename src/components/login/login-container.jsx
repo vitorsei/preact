@@ -42,7 +42,7 @@ class LoginContainer extends React.Component{
       this.state.loginInfo.username,
       this.state.loginInfo.password,
       this.state.loginInfo.instanceCode)
-      .catch((error => {
+      .catch(error => {
         this.setState({ errors: error.response.body.message });
       });
   }
