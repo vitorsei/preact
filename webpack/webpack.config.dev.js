@@ -25,7 +25,7 @@ module.exports = env => {
     },
     module: {
       rules: [
-        { enforce: 'pre', test: /\.(j|t)sx?$/, exclude: /node_modules/, loader: 'eslint-loader' },
+        { enforce: 'pre', test: /\.jsx?$/, exclude: /node_modules/, loader: 'eslint-loader' },
         { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'},
         { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
         { test: /\.png$/, loader: "url-loader?mimetype=image/png" },

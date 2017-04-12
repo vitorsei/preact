@@ -1,25 +1,33 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path');
 
-const removeEmpty = array => array.filter(p => !!p);
-
 module.exports = env => {
+  const removeEmpty = array => array.filter(p => !!p);
 
   return {
-    entry: path.join(__dirname, '../src/index.tsx'),
+    devtool: 'cheap-eval-source-map',
+    entry: {
+      app: path.join(__dirname, '../src/index.jsx'),
+      vendor: [
+        'react',
+        'react-dom',
+        'react-router'
+      ]
+    },
     output: {
-      path: path.join(__dirname, 'build'),
-      filename: 'bundle.js',
+      filename: '[name].[hash].js',
+      path: path.join(__dirname, '../build/'),
+      pathinfo: true
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js']
+      extensions: ['.js', '.jsx']
     },
     module: {
       rules: [
-        { enforce: 'pre', test: /\.tsx?$/, exclude: /node_modules/, loader: 'tslint-loader' },
         { enforce: 'pre', test: /\.(j|t)sx?$/, exclude: /node_modules/, loader: 'eslint-loader' },
-        { test: /\.tsx?$/, exclude: /node_modules/, loader: 'ts-loader' },
+        { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
         { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
         { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
         { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
@@ -29,11 +37,16 @@ module.exports = env => {
       ]
     },
     plugins: removeEmpty([
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: Infinity,
+        filename: '[name].[hash].js',
+      }),
       new webpack.LoaderOptionsPlugin({
         debug: true,
         options: {
           resolve: {
-            extensions: ['.ts', '.tsx', '.js']
+            extensions: ['.js', '.jsx']
           }
         }
       }),
@@ -41,14 +54,14 @@ module.exports = env => {
         template: path.join(__dirname, '../src/index.html'),
         filename: 'index.html',
         inject: 'body'
+      }),
+      new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
       })
     ])
-  }
+  };
 };
-
-
-// if (process.env.NODE_ENV === 'development') {
-//   config.watch = true;
-//   config.devtool = 'source-map';
-// }
-
