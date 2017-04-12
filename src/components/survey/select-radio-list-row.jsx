@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-class SelectRadioListRow extends React.Component{
+class SelectRadioListRow extends React.Component {
 
   isActive = (answerId) => {
     const customCss = StyleSheet.create(this.props.customStyles.surveyControl.selectRadio);

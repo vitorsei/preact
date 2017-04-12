@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class LoginContainer extends React.Component{
+class LoginContainer extends React.Component {
   state = {
     loginInfo: { username: '', password: '', instanceCode: 'pp-au' },
     errors: ''

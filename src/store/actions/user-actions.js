@@ -2,7 +2,7 @@ import * as types from './action-types';
 import authApi from '../api/auth-api';
 import ahApi from '../api/ah-api';
 
-export function loadProfile(){
+export function loadProfile() {
   return async function (dispatch) {
     const profile = await authApi.getProfile();
     const balance = await ahApi.getBalance();
@@ -11,6 +11,6 @@ export function loadProfile(){
   };
 }
 
-export function loadProfileSuccess(user){
+export function loadProfileSuccess(user) {
   return { type: types.LOAD_USER_PROFILE_SUCCESS, user };
 }

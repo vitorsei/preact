@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-class SelectClickBarListRow extends React.Component{
+class SelectClickBarListRow extends React.Component {
 
   isActive = (answerId) => {
     const customCss = StyleSheet.create(this.props.customStyles.surveyControl.selectClickBar);

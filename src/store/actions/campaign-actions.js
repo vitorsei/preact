@@ -5,7 +5,7 @@ export function loadCampaignsSuccess(campaigns) {
   return { type: types.CAMPAIGNS_LOADED_SUCESS, campaigns };
 }
 
-export function loadCampaignSuccess(campaign){
+export function loadCampaignSuccess(campaign) {
   return { type: types.CAMPAIGN_LOADED_SUCCESS, campaign };
 }
 

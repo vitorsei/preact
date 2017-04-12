@@ -6,7 +6,7 @@ export function onLoginSuccess(user) {
 }
 
 export function onLogin(email, password) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     const user = await authApi.login(email, password);
     dispatch(onLoginSuccess(user));
   };
@@ -22,7 +22,7 @@ export function onRedirect() {
 
 export function onRegister(email,
                            password,
-                           instanceCode){
+                           instanceCode) {
   return async function (dispatch) {
     const user = await authApi.register(email, password, instanceCode);
     dispatch(onLoginSuccess(user));
