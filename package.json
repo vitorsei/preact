@@ -57,6 +57,7 @@
     "react-test-renderer": "15.4.2",
     "sass-loader": "^6.0.3",
     "style-loader": "0.13.2",
+    "uglifyjs-webpack-plugin": "git://github.com/mishoo/UglifyJS2#harmony",
     "url-loader": "0.5.8",
     "webpack": "2.2.0",
     "webpack-dev-middleware": "^1.10.1",
