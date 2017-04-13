@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "tsc",
-    "build-watch": "tsc --watch",
-    "build:prod": "webpack",
+    "build": "webpack",
+    "postbuild": "node distServer.js",
     "express": "NODE_ENV=development node server.js",
     "start": "node webpack/webpack-dev-server --env.dev",
     "test": "npm run lint && npm run jest",
