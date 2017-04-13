@@ -19,6 +19,8 @@
     "compression-webpack-plugin": "^0.3.2",
     "express": "^4.15.2",
     "history": "4.3.0",
+    "preact": "^8.1.0",
+    "preact-compat": "^3.14.3",
     "react": "15.3.2",
     "react-cookie": "1.0.4",
     "react-dom": "15.3.2",

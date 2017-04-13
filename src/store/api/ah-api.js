@@ -32,7 +32,7 @@ const requests = {
     const instanceCode = cookie.load('pp-instance-code');
     return superagent.get(`${API_ROOT}/${instanceCode}${url}`).use(tokenPlugin).then(responseBody);
   },
-  post: (url) => {
+  post: (url, body) => {
     const instanceCode = cookie.load('pp-instance-code');
     return superagent.post(`${API_ROOT}/${instanceCode}${url}`, body).use(tokenPlugin).then(responseBody);
   }
