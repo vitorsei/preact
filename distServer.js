@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
 const open = require('open');
+const compression = require('compression');
 
 /*eslint-disable no-console */
 
 const port = 9000;
 const app = express();
 
+app.use(compression());
 app.use(express.static('build'));
 
 app.get('*', function(req, res) {

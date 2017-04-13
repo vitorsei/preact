@@ -55,11 +55,7 @@ const config = {
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
+      asset: '[path].gz',
     }),
     new UglifyJSPlugin({
         compress: {

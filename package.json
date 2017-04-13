@@ -43,6 +43,7 @@
     "babel-preset-es2017": "^6.16.0",
     "babel-preset-react": "6.16.0",
     "babel-register": "6.16.0",
+    "compression": "^1.6.2",
     "css-loader": "0.26.2",
     "eslint": "3.16.1",
     "eslint-config-pureprofile": "2.2.0",
