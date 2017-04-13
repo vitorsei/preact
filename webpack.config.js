@@ -6,6 +6,12 @@ const path = require('path');
 
 const removeEmpty = array => array.filter(p => !!p);
 
+const minify = {
+  collapseWhitespace: true,
+  conservativeCollapse: true,
+  removeComments: true,
+};
+
 const config = {
   entry: {
     app: path.join(__dirname, './src/index.jsx'),
@@ -78,7 +84,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, './src/index.html'),
       filename: 'index.html',
-      inject: 'body'
+      inject: 'body',
+      minify,
     })
   ])
 };
