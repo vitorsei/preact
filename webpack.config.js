@@ -93,7 +93,7 @@ const config = {
           join_vars: true,
         },
         output: {
-          comments: false,
+          comments: false
         }
       }
     ),
