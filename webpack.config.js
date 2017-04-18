@@ -29,7 +29,7 @@ const config = {
   },
   output: {
     filename: '[name].[hash].js',
-    path: path.join(__dirname, 'build')
+    path: path.join(__dirname, 'dist')
   },
   resolve: {
     extensions: ['.js', '.jsx'],
