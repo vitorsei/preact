@@ -2,9 +2,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 const removeEmpty = array => array.filter(p => !!p);
+
+const extractSass = new ExtractTextWebpackPlugin({
+  filename: '[name].[contenthash:8].bundle.css',
+  disable: false,
+});
 
 const minify = {
   collapseWhitespace: true,
@@ -35,8 +41,14 @@ const config = {
   module: {
     rules: [
       { enforce: 'pre', test: /\.jsx?$/, exclude: /node_modules/, loader: 'eslint-loader' },
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'},
-      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.s[ac]ss$/,
+        loader: extractSass.extract({
+          use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }],
+          fallback: 'style-loader'
+        })
+      },
       { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
       { test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=5000' },
@@ -60,6 +72,7 @@ const config = {
       }
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
+    extractSass,
     new CompressionPlugin({
       asset: '[path].gz',
     }),
