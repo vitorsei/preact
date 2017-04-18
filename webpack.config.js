@@ -28,8 +28,8 @@ const config = {
     ]
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: '[name].[hash].js',
+    path: path.join(__dirname, 'build')
   },
   resolve: {
     extensions: ['.js', '.jsx'],
