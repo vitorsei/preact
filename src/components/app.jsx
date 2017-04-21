@@ -7,6 +7,10 @@ import * as authActions from '../store/actions/auth-actions';
 import * as customStylesActions from '../store/actions/custom-styles-actions';
 import Header from './shared/header';
 import Footer from './shared/footer';
+import { Route, Link, BrowserRouter } from 'react-router-dom';
+import Home from '../components/home/home-container';
+import LoginPage from '../components/login/login-container';
+import SurveyPage from '../components/survey/survey-container';
 
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -30,18 +34,6 @@ class App extends React.Component {
     showSettings: false
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.redirectTo) {
-      this.context.router.replace(nextProps.redirectTo);
-      this.props.authActions.onRedirect();
-    }
-
-    const token = cookie.load('pp-token');
-    if (!token && !nextProps.location.pathname.includes('login')) {
-      this.context.router.replace('/login');
-    }
-  }
-
   componentWillMount() {
     this.props.customStylesActions.getCustomStyles();
   }
@@ -50,23 +42,28 @@ class App extends React.Component {
     const rootCss = StyleSheet.create(this.props.customStyles.root).mainRoot;
     const mainViewCss = StyleSheet.create(this.props.customStyles.mainView).mainViewRoot;
     return (
-      <main className={css(styles.root, rootCss)}>
+      <BrowserRouter>
+        <main className={css(styles.root, rootCss)}>
 
-        <Header user={this.props.user}
-                campaign={this.props.campaign}
-                showSettings={this.state.showSettings}
-                onLogout={this.props.authActions.onLogout}
-                customStyles={this.props.customStyles.header.css}
-                data={this.props.customStyles.header.data}
-        />
+          <Header user={this.props.user}
+                  campaign={this.props.campaign}
+                  showSettings={this.state.showSettings}
+                  onLogout={this.props.authActions.onLogout}
+                  customStyles={this.props.customStyles.header.css}
+                  data={this.props.customStyles.header.data}
+                  redirectTo={this.props.redirectTo}
+          />
 
-        <div className={css(styles.mainView, mainViewCss)}>
-          {this.props.children}
-        </div>
+          <div className={css(styles.mainView, mainViewCss)}>
+            <Route exact path="/" component={Home}/>
+            <Route path="/login" component={LoginPage}/>
+            <Route path="/survey/:id" component={SurveyPage}/>
+          </div>
 
-        <Footer footerLinks={this.props.customStyles.footer}/>
+          <Footer footerLinks={this.props.customStyles.footer}/>
 
-      </main>
+        </main>
+      </BrowserRouter>
     );
   }
 }

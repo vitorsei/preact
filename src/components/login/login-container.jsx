@@ -5,6 +5,7 @@ import * as loginActions from '../../store/actions/auth-actions';
 import * as instanceActions from '../../store/actions/instance-action';
 import { instancesFormattedForDropdown } from '../../store/selectors/instance-selectors';
 import LoginForm from './login-form';
+import { Redirect } from 'react-router-dom';
 
 function mapStateToProps(state) {
   return {
@@ -23,7 +24,8 @@ function mapDispatchToProps(dispatch) {
 class LoginContainer extends React.Component {
   state = {
     loginInfo: { username: '', password: '', instanceCode: 'pp-au' },
-    errors: ''
+    errors: '',
+    shouldRedirect: false
   };
 
   componentWillMount() {
@@ -42,6 +44,7 @@ class LoginContainer extends React.Component {
       this.state.loginInfo.username,
       this.state.loginInfo.password,
       this.state.loginInfo.instanceCode)
+      .then(() => this.setState({ shouldRedirect: true }))
       .catch(error => {
         this.setState({ errors: error.response.body.message });
       });
@@ -61,6 +64,10 @@ class LoginContainer extends React.Component {
   }
 
   render() {
+    if (this.state.shouldRedirect) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <LoginForm
         instanceOptions={this.props.instanceOptions}

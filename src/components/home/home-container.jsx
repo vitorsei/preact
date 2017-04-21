@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CampaignState } from '../../store/reducers/campaign-reducer';
 import * as homeActions from '../../store/actions/campaign-actions';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { StyleSheet, css } from 'aphrodite';
 
 function mapStateToProps(state) {

@@ -15,7 +15,7 @@ export default function authReducer(state = initialState.auth, action) {
     case types.LOGOUT:
       return {
         ...state,
-        redirectTo: '/'
+        redirectTo: '/login'
       };
 
     default:

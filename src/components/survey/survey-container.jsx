@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as campaignActions from '../../store/actions/campaign-actions';
 import * as userActions from '../../store/actions/user-actions';
 import SurveyBox from './survey-box';
+import { Redirect } from 'react-router-dom';
+import * as cookie from 'react-cookie';
 
 function mapStateToProps(state) {
   return {
@@ -43,13 +45,20 @@ class Survey extends React.Component {
 
     this.props.userActions.loadProfile();
 
-    const campaignId = this.props.params.id;
+    const campaignId = this.props.match.params.id;
     if (campaignId) {
       this.props.campaignActions.loadCampaign(campaignId);
     }
   }
 
   render() {
+    const token = cookie.load('pp-token');
+
+    if (!token) {
+      return (
+        <Redirect to="/login"/>
+      );
+    }
     return (
       <div>
         <SurveyBox campaign={this.props.campaign}

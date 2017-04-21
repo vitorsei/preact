@@ -6,7 +6,7 @@ module.exports = env => {
   const removeEmpty = array => array.filter(p => !!p);
 
   return {
-    devtool: 'cheap-eval-source-map',
+    devtool: 'source-map',
     entry: {
       app: path.join(__dirname, '../src/index.jsx'),
       vendor: [
@@ -18,6 +18,7 @@ module.exports = env => {
     output: {
       filename: '[name].[hash].js',
       path: path.join(__dirname, '../build/'),
+      publicPath: '/',
       pathinfo: true
     },
     resolve: {

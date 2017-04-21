@@ -3,9 +3,16 @@ import { StyleSheet, css } from 'aphrodite';
 import { clr, screenSize } from '../../styles/settings';
 import { icons, getIcon } from '../../styles/icons';
 import { headerHeight } from '../../styles/base.elements';
+import { Redirect } from 'react-router-dom';
 
 const Header = (props) => {
   const headerCss = StyleSheet.create(props.customStyles);
+
+  debugger;
+  if (props.redirectTo === '/login') {
+    return <Redirect to={props.redirectTo}/>;
+  }
+
   return (
     <header className={css(styles.headerRoot, headerCss.headerRoot)}>
       <nav className={css(styles.nav)}>

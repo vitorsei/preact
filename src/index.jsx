@@ -1,14 +1,14 @@
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as React from 'react';
-import { Router, hashHistory } from 'react-router';
 import store from './store/store';
-import routes from './routes';
+
 import './styles/css/index.scss';
+import App from './components/app';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory} routes={routes}/>
+      <App/>
   </Provider>,
   document.getElementById('App')
 );
