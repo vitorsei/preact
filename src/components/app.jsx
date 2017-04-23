@@ -7,12 +7,12 @@ import * as customStylesActions from '../store/actions/custom-styles-actions';
 import Header from './shared/header';
 import Footer from './shared/footer';
 import { Route, BrowserRouter } from 'react-router-dom';
-import Home from '../components/home/home-container';
-import LoginPage from '../components/login/login-container';
 import SurveyPage from '../components/survey/survey-container';
 import asyncComponent from './AsyncComponent';
 
 const Foo = asyncComponent(() => System.import('./Foo').then(module => module.default), { name: 'Foo' });
+const LoginPage = asyncComponent(() => System.import('../components/login/login-container').then(module => module.default));
+const HomePage = asyncComponent(() => System.import('../components/home/home-container').then(module => module.default));
 
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -53,7 +53,7 @@ class App extends React.Component {
           />
 
           <div className={css(styles.mainView, mainViewCss)}>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={HomePage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/survey/:id" component={SurveyPage}/>
             <Route path="/foo" component={Foo} />
