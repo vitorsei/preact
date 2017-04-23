@@ -10,7 +10,6 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import SurveyPage from '../components/survey/survey-container';
 import asyncComponent from './AsyncComponent';
 
-const Foo = asyncComponent(() => System.import('./Foo').then(module => module.default), { name: 'Foo' });
 const LoginPage = asyncComponent(() => System.import('../components/login/login-container').then(module => module.default));
 const HomePage = asyncComponent(() => System.import('../components/home/home-container').then(module => module.default));
 
@@ -56,7 +55,6 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/survey/:id" component={SurveyPage}/>
-            <Route path="/foo" component={Foo} />
           </div>
 
           <Footer footerLinks={this.props.customStyles.footer}/>
