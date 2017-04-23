@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as cookie from 'react-cookie';
 import { bindActionCreators } from 'redux';
 import { StyleSheet, css } from 'aphrodite';
 import * as authActions from '../store/actions/auth-actions';
 import * as customStylesActions from '../store/actions/custom-styles-actions';
 import Header from './shared/header';
 import Footer from './shared/footer';
-import { Route, Link, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import Home from '../components/home/home-container';
 import LoginPage from '../components/login/login-container';
 import SurveyPage from '../components/survey/survey-container';
+import asyncComponent from './AsyncComponent';
+
+const Foo = asyncComponent(() => System.import('./Foo').then(module => module.default), { name: 'Foo' });
 
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -26,10 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class App extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
-
   state = {
     showSettings: false
   };
@@ -58,6 +56,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/survey/:id" component={SurveyPage}/>
+            <Route path="/foo" component={Foo} />
           </div>
 
           <Footer footerLinks={this.props.customStyles.footer}/>
