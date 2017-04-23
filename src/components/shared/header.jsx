@@ -8,7 +8,6 @@ import { Redirect } from 'react-router-dom';
 const Header = (props) => {
   const headerCss = StyleSheet.create(props.customStyles);
 
-  debugger;
   if (props.redirectTo === '/login') {
     return <Redirect to={props.redirectTo}/>;
   }

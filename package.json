@@ -5,7 +5,7 @@
   "scripts": {
     "create-assets": "mkdir -p ./dist/assets",
     "copy-files": "cp -R src/assets dist/",
-    "clean-and-copy": "npm run clean-dist && npm run create-assets && npm run copy-files",
+    "clean-and-copy": "npm run clean-dist",
     "clean-dist": "rimraf dist",
     "prebuild": "npm run clean-and-copy",
     "build": "webpack",
@@ -68,7 +68,7 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "style-loader": "0.13.2",
-    "uglifyjs-webpack-plugin": "^0.4.3",
+    "uglifyjs-webpack-plugin": "git://github.com/mishoo/UglifyJS2#harmony",
     "url-loader": "0.5.8",
     "webpack": "2.2.0",
     "webpack-dev-middleware": "^1.10.1",

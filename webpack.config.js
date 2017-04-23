@@ -15,7 +15,7 @@ const extractSass = new ExtractTextWebpackPlugin({
 const minify = {
   collapseWhitespace: true,
   conservativeCollapse: true,
-  removeComments: true,
+  removeComments: true
 };
 
 const config = {
@@ -24,7 +24,7 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'react-router'
+      'react-router-dom'
     ]
   },
   output: {
