@@ -8,10 +8,28 @@ import Header from './shared/header';
 import Footer from './shared/footer';
 import { Route, BrowserRouter } from 'react-router-dom';
 import SurveyPage from '../components/survey/survey-container';
-import asyncComponent from './AsyncComponent';
+import Loadable from 'react-loadable';
 
-const LoginPage = asyncComponent(() => System.import('../components/login/login-container').then(module => module.default));
-const HomePage = asyncComponent(() => System.import('../components/home/home-container').then(module => module.default));
+function MyLoadingComponent({ error, pastDelay }) {
+  if (error) {
+    return <div>Error!</div>;
+  } else if (pastDelay) {
+    return <div>Loading...</div>;
+  }
+    return null;
+}
+
+let HomePage = Loadable({
+  loader: () => import('../components/home/home-container'),
+  LoadingComponent: MyLoadingComponent,
+  delay: 300
+});
+
+let LoginPage = Loadable({
+  loader: () => import('../components/login/login-container'),
+  LoadingComponent: MyLoadingComponent,
+  delay: 300
+});
 
 const mapStateToProps = (state) => ({
   user: state.user,
