@@ -18,9 +18,14 @@ function MyLoadingComponent({ error, pastDelay }) {
   }
     return null;
 }
+function fakeDelay(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
 
 let HomePage = Loadable({
-  loader: () => import('../components/home/home-container'),
+  loader: () => fakeDelay(2000).then(() => import('../components/home/home-container')),
   LoadingComponent: MyLoadingComponent,
   delay: 300
 });

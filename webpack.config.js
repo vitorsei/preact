@@ -24,7 +24,15 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'react-router-dom'
+      'react-redux',
+      'react-router-dom',
+      'redux',
+      'redux-thunk',
+      'react-loadable',
+      'react-cookie',
+      'aphrodite',
+      'superagent',
+      'superagent-promise'
     ]
   },
   output: {
